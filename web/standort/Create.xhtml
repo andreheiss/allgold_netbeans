@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateStandortTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_standortNr}" for="standortNr" />
+                    <h:inputText id="standortNr" value="#{standortController.selected.standortNr}" title="#{bundle.CreateStandortTitle_standortNr}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_standortNr}"/>
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_ort}" for="ort" />
+                    <h:inputText id="ort" value="#{standortController.selected.ort}" title="#{bundle.CreateStandortTitle_ort}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_ort}"/>
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_plz}" for="plz" />
+                    <h:inputText id="plz" value="#{standortController.selected.plz}" title="#{bundle.CreateStandortTitle_plz}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_plz}"/>
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_strasse}" for="strasse" />
+                    <h:inputText id="strasse" value="#{standortController.selected.strasse}" title="#{bundle.CreateStandortTitle_strasse}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_strasse}"/>
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_typ}" for="typ" />
+                    <h:inputText id="typ" value="#{standortController.selected.typ}" title="#{bundle.CreateStandortTitle_typ}" />
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_beschreibung}" for="beschreibung" />
+                    <h:inputText id="beschreibung" value="#{standortController.selected.beschreibung}" title="#{bundle.CreateStandortTitle_beschreibung}" />
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_lon}" for="lon" />
+                    <h:inputText id="lon" value="#{standortController.selected.lon}" title="#{bundle.CreateStandortTitle_lon}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_lon}"/>
+                    <h:outputLabel value="#{bundle.CreateStandortLabel_lat}" for="lat" />
+                    <h:inputText id="lat" value="#{standortController.selected.lat}" title="#{bundle.CreateStandortTitle_lat}" required="true" requiredMessage="#{bundle.CreateStandortRequiredMessage_lat}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{standortController.create}" value="#{bundle.CreateStandortSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{standortController.prepareList}" value="#{bundle.CreateStandortShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateStandortIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

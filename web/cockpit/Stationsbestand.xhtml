@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/cockpittemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.AllgoldTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListInventarEmpty}" rendered="#{inventarController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{inventarController.items.rowCount > 0}">
+                    <h:dataTable value="#{inventarController.getInventoryByStation(inventarController.selected.standortNr)}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="InventarNr"/>
+                            </f:facet>
+                            <h:outputText value="#{item.inventarNr}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Standort"/>
+                            </f:facet>
+                            <h:dataTable value="#{standortController.getStandort(item.standortNr)}" var="standort">
+                                <h:column>
+                                    <h:outputText value="#{standort.ort}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:outputText value="#{standort.beschreibung}"/>
+                                </h:column>
+                            </h:dataTable>
+                            
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="Produktbezeichnung"/>
+                            </f:facet>
+                            <h:dataTable value="#{artikelController.getArtikel(item.artikelNr)}" var="artikel">
+                                <h:column>
+                                    <h:outputText value="#{artikel.name}"/>
+                                </h:column>
+                                <h:column>
+                                    <h:outputText value="#{artikel.beschreibung}"/>
+                                </h:column>
+                            </h:dataTable>
+
+                        </h:column>                      
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventarTitle_stueckzahlIST}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stueckzahlIST}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListInventarTitle_stueckzahlSOLL}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.stueckzahlSOLL}"/>
+                        </h:column>
+
+                    </h:dataTable>
+                </h:panelGroup>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateVerkaufTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_verkaufNr}" for="verkaufNr" />
+                    <h:inputText id="verkaufNr" value="#{verkaufController.selected.verkaufNr}" title="#{bundle.CreateVerkaufTitle_verkaufNr}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_verkaufNr}"/>
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_standortNr}" for="standortNr" />
+                    <h:inputText id="standortNr" value="#{verkaufController.selected.standortNr}" title="#{bundle.CreateVerkaufTitle_standortNr}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_standortNr}"/>
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_persNr}" for="persNr" />
+                    <h:inputText id="persNr" value="#{verkaufController.selected.persNr}" title="#{bundle.CreateVerkaufTitle_persNr}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_persNr}"/>
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_artikelNr}" for="artikelNr" />
+                    <h:inputText id="artikelNr" value="#{verkaufController.selected.artikelNr}" title="#{bundle.CreateVerkaufTitle_artikelNr}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_artikelNr}"/>
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_anzahl}" for="anzahl" />
+                    <h:inputText id="anzahl" value="#{verkaufController.selected.anzahl}" title="#{bundle.CreateVerkaufTitle_anzahl}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_anzahl}"/>
+                    <h:outputLabel value="#{bundle.CreateVerkaufLabel_zeitpunkt}" for="zeitpunkt" />
+                    <h:inputText id="zeitpunkt" value="#{verkaufController.selected.zeitpunkt}" title="#{bundle.CreateVerkaufTitle_zeitpunkt}" required="true" requiredMessage="#{bundle.CreateVerkaufRequiredMessage_zeitpunkt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{verkaufController.create}" value="#{bundle.CreateVerkaufSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{verkaufController.prepareList}" value="#{bundle.CreateVerkaufShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateVerkaufIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

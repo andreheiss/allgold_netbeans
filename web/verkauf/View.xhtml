@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewVerkaufTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_verkaufNr}"/>
+                    <h:outputText value="#{verkaufController.selected.verkaufNr}" title="#{bundle.ViewVerkaufTitle_verkaufNr}"/>
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_standortNr}"/>
+                    <h:outputText value="#{verkaufController.selected.standortNr}" title="#{bundle.ViewVerkaufTitle_standortNr}"/>
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_persNr}"/>
+                    <h:outputText value="#{verkaufController.selected.persNr}" title="#{bundle.ViewVerkaufTitle_persNr}"/>
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_artikelNr}"/>
+                    <h:outputText value="#{verkaufController.selected.artikelNr}" title="#{bundle.ViewVerkaufTitle_artikelNr}"/>
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_anzahl}"/>
+                    <h:outputText value="#{verkaufController.selected.anzahl}" title="#{bundle.ViewVerkaufTitle_anzahl}"/>
+                    <h:outputText value="#{bundle.ViewVerkaufLabel_zeitpunkt}"/>
+                    <h:outputText value="#{verkaufController.selected.zeitpunkt}" title="#{bundle.ViewVerkaufTitle_zeitpunkt}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{verkaufController.destroyAndView}" value="#{bundle.ViewVerkaufDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewVerkaufEditLink}"/>
+                <br />
+                <h:commandLink action="#{verkaufController.prepareCreate}" value="#{bundle.ViewVerkaufCreateLink}" />
+                <br />
+                <h:commandLink action="#{verkaufController.prepareList}" value="#{bundle.ViewVerkaufShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewVerkaufIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

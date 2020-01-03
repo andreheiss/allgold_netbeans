@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePersonTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_persNr}" for="persNr" />
+                    <h:inputText id="persNr" value="#{personController.selected.persNr}" title="#{bundle.CreatePersonTitle_persNr}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_persNr}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_name}" for="name" />
+                    <h:inputText id="name" value="#{personController.selected.name}" title="#{bundle.CreatePersonTitle_name}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_name}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_vorname}" for="vorname" />
+                    <h:inputText id="vorname" value="#{personController.selected.vorname}" title="#{bundle.CreatePersonTitle_vorname}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_vorname}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_benutzername}" for="benutzername" />
+                    <h:inputText id="benutzername" value="#{personController.selected.benutzername}" title="#{bundle.CreatePersonTitle_benutzername}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_benutzername}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_passwort}" for="passwort" />
+                    <h:inputTextarea rows="4" cols="30" id="passwort" value="#{personController.selected.passwort}" title="#{bundle.CreatePersonTitle_passwort}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_passwort}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_position}" for="position" />
+                    <h:inputText id="position" value="#{personController.selected.position}" title="#{bundle.CreatePersonTitle_position}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_position}"/>
+                    <h:outputLabel value="#{bundle.CreatePersonLabel_standortNr}" for="standortNr" />
+                    <h:inputText id="standortNr" value="#{personController.selected.standortNr}" title="#{bundle.CreatePersonTitle_standortNr}" required="true" requiredMessage="#{bundle.CreatePersonRequiredMessage_standortNr}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{personController.create}" value="#{bundle.CreatePersonSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{personController.prepareList}" value="#{bundle.CreatePersonShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePersonIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
